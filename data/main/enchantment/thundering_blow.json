@@ -1,0 +1,53 @@
+{
+    "description": "Thundering Blow",
+    "supported_items": "#minecraft:enchantable/bow",
+    "weight": 1,
+    "max_level": 1,
+    "min_cost": {
+        "base": 5,
+        "per_level_above_first": 5
+    },
+    "max_cost": {
+        "base": 10,
+        "per_level_above_first": 10
+    },
+    "anvil_cost": 15,
+    "slots": [
+        "mainhand"
+    ],
+    "effects": {
+        "minecraft:hit_block": [
+            {
+                "effect": {
+                    "type": "minecraft:run_function",
+                    "function": "main:lightning_bolt"
+                },
+                "requirements": {
+                    "condition": "minecraft:entity_properties",
+                    "entity": "this",
+                    "predicate": {
+                        "type": "minecraft:spectral_arrow"
+                    }
+                }
+            }
+        ],
+        "minecraft:post_attack": [
+            {
+                "enchanted": "attacker",
+                "affected": "victim",
+                "effect": {
+                    "type": "minecraft:run_function",
+                    "function": "main:lightning_bolt"
+                },
+                "requirements": {
+                    "condition": "minecraft:damage_source_properties",
+                    "predicate": {
+                        "direct_entity": {
+                            "type": "minecraft:spectral_arrow"
+                        }
+                    }
+                }
+            }
+        ]
+    }
+}
