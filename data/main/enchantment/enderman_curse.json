@@ -1,0 +1,74 @@
+{
+    "description": "Curse of the Enderman",
+    "supported_items": "#minecraft:enchantable/armor",
+    "weight": 1,
+    "max_level": 1,
+    "min_cost": {
+        "base": 25,
+        "per_level_above_first": 0
+    },
+    "max_cost": {
+        "base": 50,
+        "per_level_above_first": 0
+    },
+    "anvil_cost": 8,
+    "slots": [
+        "armor"
+    ],
+    "effects": {
+        "minecraft:location_changed": [
+            {
+                "effect": {
+                    "type": "minecraft:spawn_particles",
+                    "particle": {
+                        "type": "minecraft:portal"
+                    },
+                    "horizontal_position": {
+                        "type": "entity_position"
+                    },
+                    "vertical_position": {
+                        "type": "entity_position",
+                        "offset": 0.5
+                    },
+                    "horizontal_velocity": {
+                        "base": 0,
+                        "movement_scale": 0.5
+                    },
+                    "vertical_velocity": {
+                        "base": 0,
+                        "movement_scale": 0.5
+                    },
+                    "speed": 5
+                }
+            },
+            {
+                "effect": {
+                    "type": "minecraft:run_function",
+                    "function": "main:enderman_curse"
+                },
+                "requirements": {
+                    "condition": "minecraft:random_chance",
+                    "chance": 0.005
+                }
+            }
+        ],
+        "minecraft:tick": [
+            {
+                "effect": {
+                    "type": "minecraft:damage_entity",
+                    "damage_type": "minecraft:drown",
+                    "min_damage": 1,
+                    "max_damage": 1
+                },
+                "requirements": {
+                    "condition": "minecraft:location_check",
+                    "predicate": {
+                        "fluid": {
+                            "fluids": "#minecraft:water"
+                        }
+                    }
+                }
+            }
+        ]
+    }
+}
